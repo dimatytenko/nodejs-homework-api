@@ -1,23 +1,27 @@
-const { Contact } = require("../../models");
+const contactsRepository = require("../../repository/contactsRepository");
+const {
+  HTTP_STATUS_CODE,
+} = require("../../libs/constants");
 
 const updateContact = async (req, res, next) => {
   const id = req.params.contactId;
   const { favorite } = req.body;
-  const contact = await Contact.findByIdAndUpdate(
-    id,
-    { favorite },
-    { new: true }
-  );
+  console.log(favorite);
+  const contact =
+    await contactsRepository.updateStatusContact(
+      id,
+      favorite
+    );
   if (contact) {
     return res.json({
       status: "success",
-      code: 200,
+      code: HTTP_STATUS_CODE.OK,
       payload: { contact },
     });
   }
-  return res.status(404).json({
+  return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
     status: "error",
-    code: 404,
+    code: HTTP_STATUS_CODE.NOT_FOUND,
     message: "Not Found",
   });
 };

@@ -20,6 +20,9 @@ const contactSchema = Schema(
   {
     versionKey: false,
     timestamps: true,
+    // toJSON: {
+    //   virtual: true,
+    // },
   }
 );
 

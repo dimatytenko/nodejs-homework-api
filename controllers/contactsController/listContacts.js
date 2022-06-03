@@ -1,10 +1,13 @@
-const { Contact } = require("../../models");
+const contactsRepository = require("../../repository/contactsRepository");
+const {
+  HTTP_STATUS_CODE,
+} = require("../../libs/constants");
 
 const listContacts = async (req, res, next) => {
-  const contacts = await Contact.find({});
+  const contacts = await contactsRepository.listContacts();
   res.json({
     status: "success",
-    code: 200,
+    code: HTTP_STATUS_CODE.OK,
     payload: { contacts },
   });
 };

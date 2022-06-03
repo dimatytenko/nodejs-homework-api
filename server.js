@@ -1,16 +1,13 @@
 const app = require("./app");
-const mongoose = require("mongoose");
+const db = require("./config/db");
 
-const { DB_HOST, PORT = 8889 } = process.env;
+const { PORT } = process.env;
 
-mongoose
-  .connect(DB_HOST)
-  .then(() =>
-    app.listen(PORT, () => {
-      console.log("Database connection successful");
-    })
-  )
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+db.then(() =>
+  app.listen(PORT, () => {
+    console.log("Database connection successful");
+  })
+).catch((error) => {
+  console.log(error.message);
+  process.exit(1);
+});
