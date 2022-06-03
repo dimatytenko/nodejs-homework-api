@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   schemaCreateContact,
+  schemaUpdateStatusContact,
 } = require("../../routes/api/contacts_validation_schemes");
 const {
   validateBody,
@@ -30,6 +31,12 @@ router.put(
   "/:contactId",
   validateBody(schemaCreateContact),
   contactsController.updateContact
+);
+
+router.patch(
+  "/:contactId/favorite",
+  validateBody(schemaUpdateStatusContact),
+  contactsController.updateStatusContact
 );
 
 module.exports = router;

@@ -1,9 +1,12 @@
-const contactsModel = require("../../models/contactsModel");
+const { Contact } = require("../../models");
 
 const updateContact = async (req, res, next) => {
-  const contact = await contactsModel.updateContact(
-    req.params.contactId,
-    req.body
+  const id = req.params.contactId;
+  const body = req.body;
+  const contact = await Contact.findByIdAndUpdate(
+    id,
+    body,
+    { new: true }
   );
   if (contact) {
     return res.json({
