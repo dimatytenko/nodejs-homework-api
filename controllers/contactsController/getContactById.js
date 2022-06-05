@@ -23,9 +23,9 @@ const getContactById = async (req, res, next) => {
         data: "Not Found",
       });
     }
-  } catch (error) {
-    console.log(error);
-    next();
+  } catch (e) {
+    console.error(e);
+    next(e);
   }
 };
 

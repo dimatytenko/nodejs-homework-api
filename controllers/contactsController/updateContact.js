@@ -10,18 +10,24 @@ const updateContact = async (req, res, next) => {
     id,
     body
   );
-  if (contact) {
-    return res.json({
-      status: "success",
-      code: HTTP_STATUS_CODE.OK,
-      payload: { contact },
-    });
+  try {
+    if (contact) {
+      return res.json({
+        status: "success",
+        code: HTTP_STATUS_CODE.OK,
+        message: "contact updated",
+      });
+    } else {
+      return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
+        status: "error",
+        code: HTTP_STATUS_CODE.NOT_FOUND,
+        message: "Not Found",
+      });
+    }
+  } catch (e) {
+    console.error(e);
+    next(e);
   }
-  return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
-    status: "error",
-    code: HTTP_STATUS_CODE.NOT_FOUND,
-    message: "Not Found",
-  });
 };
 
 module.exports = updateContact;

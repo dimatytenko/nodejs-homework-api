@@ -5,11 +5,16 @@ const {
 
 const listContacts = async (req, res, next) => {
   const contacts = await contactsRepository.listContacts();
-  res.json({
-    status: "success",
-    code: HTTP_STATUS_CODE.OK,
-    payload: { contacts },
-  });
+  try {
+    res.json({
+      status: "success",
+      code: HTTP_STATUS_CODE.OK,
+      payload: { contacts },
+    });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
 };
 
 module.exports = listContacts;

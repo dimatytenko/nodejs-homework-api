@@ -13,6 +13,7 @@ const schemaCreateContact = Joi.object({
     .messages({
       "any.required": "missing required phone field",
     }),
+  favorite: Joi.boolean(),
 });
 
 const schemaUpdateStatusContact = Joi.object({
