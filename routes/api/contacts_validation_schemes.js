@@ -13,6 +13,16 @@ const schemaCreateContact = Joi.object({
     .messages({
       "any.required": "missing required phone field",
     }),
+  favorite: Joi.boolean(),
 });
 
-module.exports = { schemaCreateContact };
+const schemaUpdateStatusContact = Joi.object({
+  favorite: Joi.boolean().required().messages({
+    "any.required": "missing field favorite",
+  }),
+});
+
+module.exports = {
+  schemaCreateContact,
+  schemaUpdateStatusContact,
+};

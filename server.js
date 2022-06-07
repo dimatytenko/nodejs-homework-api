@@ -1,5 +1,13 @@
 const app = require("./app");
+const db = require("./config/db");
 
-app.listen(8888, () => {
-  console.log("Server running. Use our API on port: 8888");
+const { PORT } = process.env;
+
+db.then(() =>
+  app.listen(PORT, () => {
+    console.log("Database connection successful");
+  })
+).catch((error) => {
+  console.log(error.message);
+  process.exit(1);
 });

@@ -3,17 +3,21 @@ const {
   HTTP_STATUS_CODE,
 } = require("../../libs/constants");
 
-const deleteContact = async (req, res, next) => {
+const updateContact = async (req, res, next) => {
   const id = req.params.contactId;
-  const contacts = await contactsRepository.removeContact(
-    id
-  );
+  const { favorite } = req.body;
+  const contact =
+    await contactsRepository.updateStatusContact(
+      id,
+      favorite
+    );
+
   try {
-    if (contacts) {
+    if (contact) {
       return res.json({
         status: "success",
         code: HTTP_STATUS_CODE.OK,
-        message: "contact deleted",
+        payload: { contact },
       });
     } else {
       return res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
@@ -28,4 +32,4 @@ const deleteContact = async (req, res, next) => {
   }
 };
 
-module.exports = deleteContact;
+module.exports = updateContact;
