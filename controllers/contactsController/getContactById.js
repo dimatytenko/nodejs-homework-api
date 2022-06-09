@@ -1,7 +1,5 @@
 const contactsRepository = require("../../repository/contactsRepository");
-const {
-  HTTP_STATUS_CODE,
-} = require("../../libs/constants");
+const { HttpCode } = require("../../libs/constants");
 
 const getContactById = async (req, res, next) => {
   const id = req.params.contactId;
@@ -12,13 +10,13 @@ const getContactById = async (req, res, next) => {
     if (contact) {
       return res.json({
         status: "success",
-        code: HTTP_STATUS_CODE.OK,
+        code: HttpCode.OK,
         payload: { contact },
       });
     } else {
-      res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
+      res.status(HttpCode.NOT_FOUND).json({
         status: "error",
-        code: HTTP_STATUS_CODE.NOT_FOUND,
+        code: HttpCode.NOT_FOUND,
         message: `Not found contact id: ${id}`,
         data: "Not Found",
       });
