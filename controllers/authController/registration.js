@@ -6,7 +6,10 @@ const registration = async (req, res) => {
   return res.status(HttpCode.CREATED).json({
     status: "success",
     code: HttpCode.CREATED,
-    data: { ...user },
+    data: {
+      email: user.email,
+      subscription: user.subscription,
+    },
   });
 };
 

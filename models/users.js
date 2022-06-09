@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
-const { Role } = require("../libs/constants");
+// const { Role } = require("../libs/constants");
 
 const userSchema = Schema(
   {
@@ -22,26 +22,25 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
-    role: {
-      type: String,
-      enum: {
-        values: Object.values(Role),
-        message: "Invalid role",
-      },
-      default: "user",
-    },
-  }
+    // role: {
+    //   type: String,
+    //   enum: {
+    //     values: Object.values(Role),
+    //     message: "Invalid role",
+    //   },
+    //   default: "user",
+    // },
+  },
 
-  // {
-  //   versionKey: false,
-  //   timestamps: true,
-  // }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 );
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     const salt = await bcrypt.genSalt(6);
-    console.log("salt---", salt);
     this.password = await bcrypt.hash(this.password, salt);
   }
   next();

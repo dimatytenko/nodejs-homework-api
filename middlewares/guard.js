@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const usersRepository = require("../repository/users");
+const { usersRepository } = require("../repository");
 const { HttpCode } = require("../libs/constants");
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
 

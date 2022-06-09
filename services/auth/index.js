@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const usersRepository = require("../../repository/users");
+const { usersRepository } = require("../../repository");
 const { HttpCode } = require("../../libs/constants");
 const {
   CustomError,
@@ -15,16 +15,11 @@ class AuthService {
     if (user) {
       throw new CustomError(
         HttpCode.CONFLICT,
-        "User already exists"
+        "Email in use"
       );
     }
     const newUser = await usersRepository.create(body);
-    return {
-      id: newUser.id,
-      email: newUser.email,
-      name: newUser.name,
-      role: newUser.role,
-    };
+    return newUser;
   }
 
   async login({ email, password }) {
@@ -32,12 +27,12 @@ class AuthService {
     if (!user) {
       throw new CustomError(
         HttpCode.UNAUTHORIZED,
-        "Invalid email or password"
+        "Email or password is wrong"
       );
     }
     const token = this.generateToken(user);
     await usersRepository.updateToken(user.id, token);
-    return { token };
+    return { token, user };
   }
 
   async logout(id) {
@@ -60,7 +55,6 @@ class AuthService {
     const payload = {
       id: user.id,
     };
-    console.log(SECRET_KEY);
     const token = jwt.sign(payload, SECRET_KEY, {
       expiresIn: "2h",
     });

@@ -7,7 +7,7 @@ const {
 const router = express.Router();
 
 router.post(
-  "/registration",
+  "/signup",
   wrapperError(authController.registration)
 );
 

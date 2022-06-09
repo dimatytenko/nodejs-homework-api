@@ -12,6 +12,9 @@ const {
 } = require("../../../controllers");
 const router = express.Router();
 const guard = require("../../../middlewares/guard");
+const {
+  wrapper,
+} = require("../../../middlewares/error-handler");
 
 router.get("/", guard, contactsController.listContacts);
 
@@ -19,21 +22,21 @@ router.get(
   "/:contactId",
   guard,
   validateIdContact(),
-  contactsController.getContactById
+  wrapper(contactsController.getContactById)
 );
 
 router.post(
   "/",
   guard,
   validateBody(schemaCreateContact),
-  contactsController.addContact
+  wrapper(contactsController.addContact)
 );
 
 router.delete(
   "/:contactId",
   guard,
   validateIdContact(),
-  contactsController.deleteContact
+  wrapper(contactsController.deleteContact)
 );
 
 router.put(
@@ -41,7 +44,7 @@ router.put(
   guard,
   validateIdContact(),
   validateBody(schemaCreateContact),
-  contactsController.updateContact
+  wrapper(contactsController.updateContact)
 );
 
 router.patch(
@@ -49,7 +52,7 @@ router.patch(
   guard,
   validateIdContact(),
   validateBody(schemaUpdateStatusContact),
-  contactsController.updateStatusContact
+  wrapper(contactsController.updateStatusContact)
 );
 
 module.exports = router;
