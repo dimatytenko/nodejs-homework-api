@@ -16,7 +16,11 @@ const {
   wrapper,
 } = require("../../../middlewares/error-handler");
 
-router.get("/", guard, contactsController.listContacts);
+router.get(
+  "/",
+  guard,
+  wrapper(contactsController.listContacts)
+);
 
 router.get(
   "/:contactId",

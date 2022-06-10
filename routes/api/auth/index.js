@@ -19,4 +19,10 @@ router.post(
   wrapperError(authController.logout)
 );
 
+router.post(
+  "/current",
+  guard,
+  wrapperError(authController.currentUser)
+);
+
 module.exports = router;

@@ -39,6 +39,11 @@ class AuthService {
     await usersRepository.updateToken(id, null);
   }
 
+  async currentUser(id) {
+    const user = await usersRepository.findById(id);
+    return user;
+  }
+
   async getUser(email, password) {
     const user = await usersRepository.findByEmail(email);
     if (!user) {

@@ -5,12 +5,13 @@ const SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 const guard = async (req, res, next) => {
   const token = req.get("Authorization")?.split(" ")[1];
+  // const bearer = req.get("Authorization")?.split(" ")[0];
 
   if (!verifyToken(token)) {
     return res.status(HttpCode.UNAUTHORIZED).send({
       status: "error",
       code: HttpCode.UNAUTHORIZED,
-      message: "Unauthorized",
+      message: "Not authorized",
     });
   }
 
@@ -21,7 +22,7 @@ const guard = async (req, res, next) => {
     return res.status(HttpCode.UNAUTHORIZED).send({
       status: "error",
       code: HttpCode.UNAUTHORIZED,
-      message: "Unauthorized",
+      message: "Not authorized",
     });
   }
   req.user = user; // res.locals.user = user
