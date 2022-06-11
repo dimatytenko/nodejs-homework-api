@@ -1,0 +1,22 @@
+const Joi = require("joi");
+
+const schemaAuthUser = Joi.object({
+  password: Joi.string()
+    .min(3)
+    .max(12)
+    .required()
+    .messages({
+      "any.required": " missing required field {{#label}}",
+      "string.min":
+        "{{#label}} length must be at least {{#limit}} characters long!!!",
+      "string.max":
+        "{{#label}} length must be less than or equal to {{#limit}} characters long!!!",
+    }),
+  email: Joi.string().required().messages({
+    "any.required": " missing required field {{#label}}",
+  }),
+});
+
+module.exports = {
+  schemaAuthUser,
+};

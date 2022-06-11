@@ -44,6 +44,14 @@ class AuthService {
     return user;
   }
 
+  async updateSubscription(id, subscription) {
+    const user = await usersRepository.updateSubscription(
+      id,
+      subscription
+    );
+    return user;
+  }
+
   async getUser(email, password) {
     const user = await usersRepository.findByEmail(email);
     if (!user) {

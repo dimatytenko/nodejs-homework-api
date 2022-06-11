@@ -1,13 +1,13 @@
-const { HTTP_STATUS_CODE } = require("../libs/constants");
+const { HttpCode } = require("../libs/constants");
 
 const validateBody = (schema) => async (req, res, next) => {
   try {
     await schema.validateAsync(req.body);
     next();
   } catch (err) {
-    res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+    res.status(HttpCode.BAD_REQUEST).json({
       status: "error",
-      code: HTTP_STATUS_CODE.BAD_REQUEST,
+      code: HttpCode.BAD_REQUEST,
       message: err.message,
     });
   }
@@ -18,9 +18,9 @@ const validateIdContact = () => async (req, res, next) => {
   if (id.length === 24) {
     next();
   } else {
-    res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+    res.status(HttpCode.BAD_REQUEST).json({
       status: "error",
-      code: HTTP_STATUS_CODE.BAD_REQUEST,
+      code: HttpCode.BAD_REQUEST,
       message: "Invalid id",
     });
   }
