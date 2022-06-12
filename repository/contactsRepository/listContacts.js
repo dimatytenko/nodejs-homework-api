@@ -1,8 +1,10 @@
 const { Contact } = require("../../models");
 
-async function listContacts() {
-  const result = await Contact.find();
-
+async function listContacts(obj, skip, limit) {
+  const result = await Contact.find(obj, "", {
+    skip,
+    limit,
+  });
   return result;
 }
 

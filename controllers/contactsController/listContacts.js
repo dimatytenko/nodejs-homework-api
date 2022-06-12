@@ -1,20 +1,28 @@
-const contactsRepository = require("../../repository/contactsRepository");
-const {
-  HTTP_STATUS_CODE,
-} = require("../../libs/constants");
+const { contactsRepository } = require("../../repository");
+const { HttpCode } = require("../../libs/constants");
 
 const listContacts = async (req, res, next) => {
-  const contacts = await contactsRepository.listContacts();
-  try {
-    res.json({
-      status: "success",
-      code: HTTP_STATUS_CODE.OK,
-      payload: { contacts },
-    });
-  } catch (e) {
-    console.error(e);
-    next(e);
-  }
+  const { _id } = req.user;
+  const {
+    page = 1,
+    limit = 10,
+    favorite = false,
+  } = req.query;
+  console.log(favorite);
+  const skip = (page - 1) * limit;
+  const contacts = await contactsRepository.listContacts(
+    {
+      owner: _id,
+      favorite: favorite,
+    },
+    skip,
+    Number(limit)
+  );
+  res.json({
+    status: "success",
+    code: HttpCode.OK,
+    payload: { contacts },
+  });
 };
 
 module.exports = listContacts;
