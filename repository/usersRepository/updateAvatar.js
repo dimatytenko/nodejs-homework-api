@@ -1,14 +1,15 @@
 const { User } = require("../../models/users");
 
-const updateSubscription = async (id, subscription) => {
+const updateAvatar = async (id, avatar, cloudId = null) => {
   const user = await User.findByIdAndUpdate(
     id,
     {
-      subscription: subscription,
+      avatar: avatar,
+      cloudId: cloudId,
     },
     { new: true }
   );
   return user;
 };
 
-module.exports = updateSubscription;
+module.exports = updateAvatar;

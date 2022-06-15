@@ -3,6 +3,7 @@ const findByEmail = require("./findUserByEmail");
 const create = require("./createUser");
 const updateToken = require("./updateToken");
 const updateSubscription = require("./updateSubscription");
+const updateAvatar = require("./updateAvatar");
 
 module.exports = {
   findById,
@@ -10,4 +11,5 @@ module.exports = {
   create,
   updateToken,
   updateSubscription,
+  updateAvatar,
 };

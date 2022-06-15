@@ -14,4 +14,6 @@ const Role = {
   USER: "user",
 };
 
-module.exports = { HttpCode, Role };
+const FOLDER_CLOUD_AVATAR = "avatars";
+
+module.exports = { HttpCode, Role, FOLDER_CLOUD_AVATAR };

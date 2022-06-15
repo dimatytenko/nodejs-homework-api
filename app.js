@@ -13,6 +13,7 @@ const formatsLogger =
   app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
+app.use(express.static(process.env.STATIC_FOLDER));
 app.use(cors());
 app.use(express.json());
 
