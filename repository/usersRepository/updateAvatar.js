@@ -4,11 +4,12 @@ const updateAvatar = async (id, avatar, cloudId = null) => {
   const user = await User.findByIdAndUpdate(
     id,
     {
-      avatar: avatar,
+      avatarURL: avatar,
       cloudId: cloudId,
     },
     { new: true }
   );
+  // console.log(user);
   return user;
 };
 

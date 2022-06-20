@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
-var gravatar = require("gravatar");
+const gravatar = require("gravatar");
 
 const userSchema = Schema(
   {

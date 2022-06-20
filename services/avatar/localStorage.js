@@ -1,7 +1,6 @@
 const path = require("path");
 const fs = require("fs/promises");
 const { usersRepository } = require("../../repository");
-console.log(usersRepository);
 
 class localStorage {
   constructor(file, user) {
@@ -28,7 +27,6 @@ class localStorage {
       this.user.id,
       urlOfAvatar
     );
-
     return urlOfAvatar;
   }
 }
