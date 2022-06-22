@@ -7,6 +7,8 @@ const {
 const {
   validateBody,
 } = require("../../../middlewares/validation");
+
+const upload = require("../../../middlewares/upload");
 const {
   schemaAuthUser,
 } = require("./authentification_validation_schemes");
@@ -41,6 +43,13 @@ router.patch(
   "/",
   guard,
   wrapperError(authController.updateSubscription)
+);
+
+router.patch(
+  "/avatars",
+  guard,
+  upload.single("avatar"),
+  wrapperError(authController.updateAvatar)
 );
 
 module.exports = router;

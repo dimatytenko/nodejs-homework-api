@@ -9,6 +9,7 @@ const registration = async (req, res) => {
     data: {
       email: user.email,
       subscription: user.subscription,
+      avatarURL: user.avatarURL,
     },
   });
 };

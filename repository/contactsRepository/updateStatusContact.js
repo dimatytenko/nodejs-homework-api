@@ -2,10 +2,11 @@ const { Contact } = require("../../models");
 
 const updateStatusContact = async (contactId, status) => {
   const result = await Contact.findOneAndUpdate(
-    { _id: contactId },
+    contactId,
     { favorite: status },
     { new: true }
   );
+  console.log(result);
 
   return result;
 };

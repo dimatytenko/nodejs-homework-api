@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
-// const { Role } = require("../libs/constants");
+const gravatar = require("gravatar");
 
 const userSchema = Schema(
   {
@@ -22,14 +22,16 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
-    // role: {
-    //   type: String,
-    //   enum: {
-    //     values: Object.values(Role),
-    //     message: "Invalid role",
-    //   },
-    //   default: "user",
-    // },
+    avatarURL: {
+      type: String,
+      default: function () {
+        return gravatar.url(this.email, { s: "250" }, true);
+      },
+    },
+    cloudId: {
+      type: String,
+      default: null,
+    },
   },
 
   {
