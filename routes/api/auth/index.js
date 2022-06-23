@@ -11,6 +11,7 @@ const {
 const upload = require("../../../middlewares/upload");
 const {
   schemaAuthUser,
+  schemaEmailUser,
 } = require("./authentification_validation_schemes");
 
 const router = express.Router();
@@ -36,7 +37,7 @@ router.post(
 router.post(
   "/current",
   guard,
-  wrapperError(authController.currentUser)
+  wrapperError(authController.getCurrentUser)
 );
 
 router.patch(
@@ -50,6 +51,17 @@ router.patch(
   guard,
   upload.single("avatar"),
   wrapperError(authController.updateAvatar)
+);
+
+router.get(
+  "/verify/:verificationToken",
+  wrapperError(authController.verifyUser)
+);
+
+router.get(
+  "/verify",
+  validateBody(schemaEmailUser),
+  wrapperError(authController.reverifyUser)
 );
 
 module.exports = router;

@@ -4,8 +4,14 @@ const cors = require("cors");
 const { HttpCode } = require("./libs/constants");
 const authRouter = require("./routes/api/auth");
 const contactsRouter = require("./routes/api/contacts");
+// const sendEmail = require("./sendgrid/helpers/sendEmail");
 
-// require("dotenv").config();
+// const mail = {
+//   to: "gagiw99710@serosin.com",
+//   subject: "hello",
+//   html: "<p>hello world</p>",
+// };
+// sendEmail(mail);
 
 const app = express();
 

@@ -7,7 +7,7 @@ const login = async (req, res) => {
   return res.status(HttpCode.OK).json({
     status: "success",
     code: HttpCode.OK,
-    data: {
+    ResponseBody: {
       token,
       user: {
         email: user.email,

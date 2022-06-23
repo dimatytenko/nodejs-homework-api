@@ -21,7 +21,7 @@ const listContacts = async (req, res, next) => {
   res.json({
     status: "success",
     code: HttpCode.OK,
-    payload: { contacts },
+    ResponseBody: { contacts },
   });
 };
 

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+
 const { usersRepository } = require("../../repository");
 const { HttpCode } = require("../../libs/constants");
 const {
@@ -24,7 +25,7 @@ class AuthService {
 
   async login({ email, password }) {
     const user = await this.getUser(email, password);
-    if (!user) {
+    if (!user || !user.verify) {
       throw new CustomError(
         HttpCode.UNAUTHORIZED,
         "Email or password is wrong"
@@ -48,6 +49,13 @@ class AuthService {
     const user = await usersRepository.updateSubscription(
       id,
       subscription
+    );
+    return user;
+  }
+
+  async verificationToken(token) {
+    const user = await usersRepository.verificationToken(
+      token
     );
     return user;
   }

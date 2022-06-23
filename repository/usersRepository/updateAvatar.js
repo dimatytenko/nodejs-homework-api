@@ -9,7 +9,6 @@ const updateAvatar = async (id, avatar, cloudId = null) => {
     },
     { new: true }
   );
-  // console.log(user);
   return user;
 };
 

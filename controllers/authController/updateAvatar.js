@@ -20,10 +20,8 @@ const updateAvatar = async (req, res, next) => {
   const urlOfAvatar = await avatarService.update();
 
   res.status(HttpCode.OK).json({
-    payload: {
-      ResponseBody: {
-        avatarURL: urlOfAvatar,
-      },
+    ResponseBody: {
+      avatarURL: urlOfAvatar,
     },
   });
 };

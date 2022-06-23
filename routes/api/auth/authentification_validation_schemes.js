@@ -17,6 +17,13 @@ const schemaAuthUser = Joi.object({
   }),
 });
 
+const schemaEmailUser = Joi.object({
+  email: Joi.string().required().messages({
+    "any.required": " missing required field {{#label}}",
+  }),
+});
+
 module.exports = {
   schemaAuthUser,
+  schemaEmailUser,
 };
