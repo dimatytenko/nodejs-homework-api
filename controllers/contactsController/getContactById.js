@@ -10,14 +10,16 @@ const getContactById = async (req, res, next) => {
     return res.json({
       status: "success",
       code: HttpCode.OK,
-      payload: { contact },
+      ResponseBody: { contact },
     });
   } else {
     res.status(HttpCode.NOT_FOUND).json({
       status: "error",
       code: HttpCode.NOT_FOUND,
-      message: `Not found contact id: ${id}`,
-      data: "Not Found",
+      ResponseBody: {
+        message: `Not found contact id: ${id}`,
+        data: "Not Found",
+      },
     });
   }
 };
