@@ -7,12 +7,9 @@ const schemaCreateContact = Joi.object({
   email: Joi.string().min(3).max(30).required().messages({
     "any.required": "missing required email field",
   }),
-  phone: Joi.string()
-    .pattern(/[0-9]+/)
-    .required()
-    .messages({
-      "any.required": "missing required phone field",
-    }),
+  number: Joi.string().required().messages({
+    "any.required": "missing required phone field",
+  }),
   favorite: Joi.boolean(),
 });
 

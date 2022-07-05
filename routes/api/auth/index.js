@@ -34,7 +34,7 @@ router.post(
   wrapperError(authController.logout)
 );
 
-router.post(
+router.get(
   "/current",
   guard,
   wrapperError(authController.getCurrentUser)

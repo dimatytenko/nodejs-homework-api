@@ -17,6 +17,7 @@ const registration = async (req, res) => {
     status: "success",
     code: HttpCode.CREATED,
     ResponseBody: {
+      verify: user.verify,
       name: user.name,
       email: user.email,
       subscription: user.subscription,

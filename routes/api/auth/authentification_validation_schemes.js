@@ -3,8 +3,8 @@ const Joi = require("joi");
 const schemaAuthUser = Joi.object({
   name: Joi.string(),
   password: Joi.string()
-    .min(3)
-    .max(12)
+    .min(9)
+    .max(21)
     .required()
     .messages({
       "any.required": " missing required field {{#label}}",

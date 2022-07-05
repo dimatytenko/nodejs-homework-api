@@ -10,8 +10,11 @@ const login = async (req, res) => {
     ResponseBody: {
       token,
       user: {
+        name: user.name,
         email: user.email,
         subscription: user.subscription,
+        avatarURL: user.avatarURL,
+        verify: user.verify,
       },
     },
   });
