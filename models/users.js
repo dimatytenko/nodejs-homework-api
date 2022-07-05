@@ -4,6 +4,9 @@ const gravatar = require("gravatar");
 
 const userSchema = Schema(
   {
+    name: {
+      type: String,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],

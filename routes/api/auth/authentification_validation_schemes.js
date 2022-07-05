@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 const schemaAuthUser = Joi.object({
+  name: Joi.string(),
   password: Joi.string()
     .min(3)
     .max(12)
